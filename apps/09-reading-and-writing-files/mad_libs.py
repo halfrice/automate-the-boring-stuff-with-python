@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# mad-libs.py - Replaces key phrases within a text file with user-prompted words.
-# Usage: py.exe mad-libs.py <path/to/file.txt> - Overwrites file with modified version.
+# mad_libs.py - Replaces key phrases within a text file with user-prompted words.
+# Usage: py.exe mad_libs.py <path/to/file.txt> - Overwrites file with modified version.
 
 import re
 import sys

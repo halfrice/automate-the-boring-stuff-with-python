@@ -1,4 +1,9 @@
-def isValidChessBoard(board):
+#!/usr/bin/evn python3
+
+# chess_dictionary_validator.py
+
+
+def is_valid_chess_board(board):
     # Construct chessboard positions
     positions = []
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
@@ -47,6 +52,7 @@ test_board = {
     '3e': 'wking',
     '9z': 'brook',  # If left uncommented, this will invalidate the chessboard
 }
+print(is_valid_chess_board(test_board))
 
 # The starting positions for a standard chess game
 starting_board = {
@@ -84,6 +90,4 @@ starting_board = {
     'g8': 'bknight',
     'h8': 'brook',
 }
-
-print(isValidChessBoard(test_board))
-print(isValidChessBoard(starting_board))
+print(is_valid_chess_board(starting_board))

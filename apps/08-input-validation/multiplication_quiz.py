@@ -1,4 +1,10 @@
-import random, math, time
+#!/usr/bin/env python3
+
+# multiplication_quiz.py
+
+import math
+import random
+import time
 
 success = [
     'Correct!',
@@ -19,16 +25,14 @@ fail = [
 ]
 
 
-def grade(numOfCorrect, numOfQuestions):
+def grade(number_of_correct, number_of_questions):
     grades = {10: 'A', 9: 'A-', 8: 'B', 7: 'C', 6: 'D'}
     grade = ''
-
-    score = math.ceil((10 * numOfCorrect) / numOfQuestions)
+    score = math.ceil((10 * number_of_correct) / number_of_questions)
     if score in grades.keys():
-        grade = grades[numOfCorrect]
+        grade = grades[number_of_correct]
     else:
         grade = 'F'
-
     return grade
 
 
@@ -41,50 +45,50 @@ def quiz(n):
         questions.append([a, b])
 
     print(f'Multiplication Quiz. {len(questions)} questions.')
-    rsg = ['Ready', 'Set', 'Go!']
-    for i in range(len(rsg)):
-        print(f'{rsg[i]}', end='\n')
+    ready_set_go = ['Ready', 'Set', 'Go!']
+    for i in range(len(ready_set_go)):
+        print(f'{ready_set_go[i]}', end='\n')
         time.sleep(0.25)
 
     # The quiz loop
     score = 0
     while True:
         for i, q in enumerate(questions):  # i = index, q = question
-            userAnswer = ''
+            user_answer = ''
             attempt = 1
-            startTime = time.time()
-            elapsedTime = 0
+            start_time = time.time()
+            elapsed_time = 0
 
             # Get an answer from user
-            while type(userAnswer) is not int:
+            while type(user_answer) is not int:
                 # Allow max 3 attempts
                 if attempt > 3:
                     print('Too many attempts. Moving on...')
                     break
 
                 # Get user input
-                userAnswer = input(f'{q[0]} x {q[1]}: ')
+                user_answer = input(f'{q[0]} x {q[1]}: ')
 
                 # Calculate the elapsed time
-                elapsedTime = time.time() - startTime
-                if elapsedTime >= 8:
+                elapsed_time = time.time() - start_time
+                if elapsed_time >= 8:
                     print('Too much time has passed. Fail...')
                     break
 
                 # Typecast user's answer to an integer
                 try:
-                    userAnswer = int(userAnswer)
+                    user_answer = int(user_answer)
                 except ValueError:
                     print('Please enter a number: ')
-                    userAnswer = ''
+                    user_answer = ''
 
                 attempt += 1
 
             # Evaluate the user's answer
-            if type(userAnswer) is int and elapsedTime < 8:
+            if type(user_answer) is int and elapsed_time < 8:
                 answer = q[0] * q[1]
 
-                if userAnswer == answer:
+                if user_answer == answer:
                     print(f'{success[random.randint(0, len(success) - 1)]}')
                     score += 1
                 else:

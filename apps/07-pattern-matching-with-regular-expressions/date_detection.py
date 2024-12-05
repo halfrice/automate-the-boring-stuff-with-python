@@ -1,11 +1,15 @@
+#!/usr/bin/env python3
+
+# date_detection.py
+
 import re
 
-dateRegex = re.compile(
+date_regex = re.compile(
     r'(\d{2})/(\d{2})/(\d{4})',
     re.VERBOSE,
 )
 
-calendar = {
+CALENDAR = {
     1: 31,
     2: 28,
     3: 31,
@@ -21,17 +25,16 @@ calendar = {
 }
 
 
-def isLeapYear(year):
-    if year % 400 == 0:
+def is_leap_year(year):
+    if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
         return True
-    elif year % 4 == 0 and year % 100 != 0:
-        return True
+    # elif year % 4 == 0 and year % 100 != 0:
+    #     return True
     return False
 
 
-def validateDate(date):
-    # mo stands for match object (from the book)
-    mo = dateRegex.search(date)
+def validate_date(date):
+    mo = date_regex.search(date)  # mo stands for match object (from the book)
     if mo:
         month = int(mo.group(1))
         day = int(mo.group(2))
@@ -40,12 +43,12 @@ def validateDate(date):
         return False
 
     # Validate months
-    if month not in calendar:
+    if month not in CALENDAR:
         return False
 
     # Validate days
-    i = 1 if month == 2 and isLeapYear(year) else 0
-    if day < 1 or day > (calendar[month] + i):
+    i = 1 if month == 2 and is_leap_year(year) else 0
+    if day < 1 or day > (CALENDAR[month] + i):
         return False
 
     # Validate years
@@ -56,8 +59,8 @@ def validateDate(date):
 
 
 date = input('Input a date in MM/DD/YYYY format: ')
-isValidDate = validateDate(date)
-if isValidDate:
+is_valid_date = validate_date(date)
+if is_valid_date:
     print(f'{date} is valid')
 else:
     print(f'{date} is not valid')
